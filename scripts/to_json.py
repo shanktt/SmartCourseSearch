@@ -53,5 +53,5 @@ for i, row in df.iterrows():
 
 # # print(type(parsed))
 
-with open("final.json", "w") as outfile:
+with open("data/final.json", "w") as outfile:
     outfile.write(json.dumps(data))

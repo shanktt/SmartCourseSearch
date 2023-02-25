@@ -8,7 +8,7 @@ enums = {
     'Advanced Composition': 'Advanced Composition', 
     'Nat Sci & Tech - Life Sciences course': 'Nat Sci & Tech', 
     'Grand Challenge-Sustainability course': 'Grand Challenge', 
-    'Camp Honors/Chanc Schol course': 'Camp Honors/Chanc Schol course', 
+    'Camp Honors/Chanc Schol course': 'Camp Honors/Chanc Schol', 
     'Nat Sci & Tech - Life Sciences': 'Nat Sci & Tech', 
     'Nat Sci & Tech - Phys Sciences': 'Nat Sci & Tech', 
     'Quantitative Reasoning II': 'Quantitative Reasoning II', 
@@ -40,14 +40,13 @@ enums_last_level = {
 'Social & Beh Sci': 1,
 'Advanced Composition': 2,
 'Grand Challenge': 3,
-'Camp Honors/Chanc Schol course': 4,
+'Camp Honors/Chanc Schol': 4,
 'Quantitative Reasoning II': 5,
 'Humanities': 6,
-'Camp Honors/Chanc Schol': 7,
-'Cultural Studies': 8,
-'Composition I course': 9,
-'Quantitative Reasoning I course': 10,
-'James Scholars course': 11,
+'Cultural Studies': 7,
+'Composition I course': 8,
+'Quantitative Reasoning I course': 9,
+'James Scholars course': 10,
 }
 
 combined = pd.read_csv('data/combined-courses-gpas.csv')
@@ -65,5 +64,6 @@ for i, row in combined.iterrows():
 
 combined = combined[combined["Credit Hours"].str.contains("TO|OR|To|Or|to|or")==False]
 combined["Credit Hours"] = combined["Credit Hours"].str.extract('(\d+)')
+combined = combined[~combined['Description'].str.match(r'Same as.*')]
 print(combined.shape)
 combined.to_csv("data/final.csv", index=False)
