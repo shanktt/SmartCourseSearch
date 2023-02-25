@@ -120,7 +120,7 @@ for i, row in combined.iterrows():
     if isinstance(value, list):
         combined.at[i,'Degree Attributes Codes'] = list(map(lambda x: enums_last_level[enums[x.strip()]], value))
 
-combined.to_csv("data/final_to_be_fixed.csv")
+combined.to_csv("data/final_to_be_fixed.csv", index=False)
 
 # Getting uniques below
 # attrs = combined['Degree Attributes'].str.split(',')
