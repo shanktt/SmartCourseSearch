@@ -4,19 +4,20 @@ import Link from "next/link";
 
 const Container = styled.nav`
   height: 80px;
-  background-color: #0C0D0F;
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 2px solid #9340E9;
-  justify-content: center;
+  width: 880px;
 `
 
 const Logo = styled(Link)`
-  font-family: var(--font-b);
+  font-family: var(--font-open);
   font-weight: 500;
   font-size: 50px;
-  color: #fff;
+  color: #000;
+  
+  border-bottom: 3px solid #000;
+
 `
 
 function Navbar(props) {

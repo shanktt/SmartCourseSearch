@@ -1,10 +1,12 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 
 const Container = styled.div`
   border-radius: 6px;
   background-color: white;
-  padding: 5px;
+  padding: 15px 20px;
+  box-shadow: 5px 5px 0px #000;
+  border: 2px solid black;
 `
 
 const TitleContainer = styled.div`
@@ -12,6 +14,7 @@ const TitleContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 30px;
+  border-bottom: 1px solid #000;
 `
 const Heading = styled.h2`
   overflow: hidden;
@@ -26,9 +29,11 @@ const AvgGpa = styled.div`
   min-width: 105px;
   font-weight: 500;
   font-size: 17px;
+  margin-right: 2px;
 `
 
 const Description = styled.div`
+    margin: 5px 0px;
 `
 
 const TagList = styled.div`
@@ -36,12 +41,22 @@ const TagList = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-auto-rows: auto;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 10px;
 `
+
+
+
 const Tag = styled.div`
-    background-color: yellow;
+
+  background: #000;
+  background-size: 400% 400%;
   padding: 5px 10px;
-  
+  border-radius: 5px;
+  font-weight: 500;
+  border: 1px solid #000;
+  color: #fff;
+  border: 1px solid #fff;
+  box-shadow: 2px 2px 0px #000;
 `
 
 function CourseCard({props}) {
@@ -73,18 +88,7 @@ function CourseCard({props}) {
                 <Tag>
                     Western/Comparative Culture
                 </Tag>
-                <Tag>
-                    Advanced Composition
-                </Tag>
-                <Tag>
-                    Western/Comparative Culture
-                </Tag>
-                <Tag>
-                    Advanced Composition
-                </Tag>
-                <Tag>
-                    Western/Comparative Culture
-                </Tag>
+
             </TagList>
         </Container>
     );
