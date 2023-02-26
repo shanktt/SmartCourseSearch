@@ -49,7 +49,9 @@ const Main = styled.main`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  @media (min-width: 900px) {
+    align-items: center;
+  }
 `
 const SearchMenuContainer = styled.div`
     padding-bottom: 20px;
@@ -61,8 +63,12 @@ const ShowOptions = styled.div`
     span {
       text-decoration: underline;
     }
+  @media (min-width: 800px) {
+    font-size: 18px;
+  }
+
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 14px;
   display: flex;
 align-items: center;
   font-weight: 600;
@@ -71,17 +77,34 @@ align-items: center;
 
 
 const PageContainer = styled.div`
+  margin-top: 20px;
   margin-left: 10px;
   margin-right: 10px;
   @media (min-width: 900px) {
     width: 880px;
   }
+  
 `
 
 const SelectContainer = styled.div`
   flex: 1;
   margin-left: 20px;
 `
+
+const CardsContainer = styled.div`
+  @media (min-width: 900px) {
+    flex-direction: column;
+    display: flex;
+    margin-top: 0px;
+  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
+  grid-gap: 15px;
+  margin-top: 30px;
+  width: 100%;
+  justify-content: center;
+`
+
 
 export default function Home() {
 
@@ -98,7 +121,6 @@ export default function Home() {
           <GlobalContextProvider>
           <Navbar />
           <PageContainer>
-              <br/>
               <SearchMenuContainer>
                   <SearchField />
 
@@ -152,12 +174,13 @@ export default function Home() {
                   </ShowOptions>
 
               </SearchMenuContainer>
-              <br/>
-              <CourseCard />
-              <br/>
-              <CourseCard />
-              <br/>
-              <CourseCard />
+                  <CardsContainer>
+                      <CourseCard />
+                      <CourseCard />
+                      <CourseCard />
+                  </CardsContainer>
+
+
           </PageContainer>
           </GlobalContextProvider>
       </Main>

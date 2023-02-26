@@ -4,36 +4,49 @@ import styled, {keyframes} from 'styled-components'
 const Container = styled.div`
   border-radius: 6px;
   background-color: white;
-  padding: 15px 20px;
   box-shadow: 5px 5px 0px #000;
   border: 2px solid black;
+  @media (min-width: 900px) {
+    width: 880px;
+    padding: 15px 20px;
+    margin-top: 20px;
+  }
+  padding: 10px 15px;
+  width: 320px;
 `
 
 const TitleContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 30px;
+  @media (min-width: 900px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+  }
+  flex-direction: column;
+  //display: flex;
   border-bottom: 1px solid #000;
-`
-const Heading = styled.h2`
-  overflow: hidden;
-  white-space: nowrap;
-  margin-right: 10px;
-  font-weight: 700;
-  font-size: 25px;
 `
 
 const AvgGpa = styled.div`
   //margin-right: 5px;
+  @media (min-width: 900px) {
+    font-size: 17px;
+    font-weight: 500;
+  }
+  font-size: 13px;
   min-width: 105px;
-  font-weight: 500;
-  font-size: 17px;
+  font-weight: 300;
   margin-right: 2px;
+  white-space: nowrap;
 `
 
 const Description = styled.div`
     margin: 5px 0px;
+  @media (min-width: 900px) {
+    font-size: 16px;
+  }
+  font-size: 13px;
 `
 
 const TagList = styled.div`
@@ -44,16 +57,33 @@ const TagList = styled.div`
   gap: 10px;
 `
 
+const Heading = styled.h2`
+  all: unset;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 25px;
+  @media (min-width: 900px) {
+    width: 710px;
+    font-size: 25px;
+    margin-right: 10px;
+  }
+  font-size: 16px;
+`
 
 
 const Tag = styled.div`
+  @media (min-width: 900px) {
+    padding: 5px 10px;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  padding: 2px 5px;
+  font-weight: 400;
+  font-size: 14px;
 
   background: #000;
-  background-size: 400% 400%;
-  padding: 5px 10px;
   border-radius: 5px;
-  font-weight: 500;
-  border: 1px solid #000;
   color: #fff;
   border: 1px solid #fff;
   box-shadow: 2px 2px 0px #000;
@@ -72,7 +102,10 @@ function CourseCard({props}) {
         <Container>
             <TitleContainer>
                 <Heading>
-                    {subject}&nbsp;{courseNumber}:&nbsp;{courseTitle}
+                    <span>                    {subject}&nbsp;{courseNumber}:&nbsp;{courseTitle}
+
+
+                    </span>
                 </Heading>
                 <AvgGpa>
                     Avg GPA: {avgGpa.toFixed(2)}
