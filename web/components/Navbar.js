@@ -19,6 +19,7 @@ const Logo = styled(Link)`
   //marin-top: 10px;
   font-family: var(--font-open);
   font-weight: 500;
+  margin-left: 10px;
   margin-right: 10px;
   margin-top: 10px;
   @media (min-width: 450px) {
@@ -27,6 +28,9 @@ const Logo = styled(Link)`
   @media (min-width: 650px) {
     margin-top: 0px;
     font-size: 50px;
+  }
+  @media (min-width: 900px) {
+    margin-left: 0px;
   }
   font-size: 25px;
   color: #000;
