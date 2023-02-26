@@ -42,14 +42,16 @@ const ShowOptions = styled.div`
       text-decoration: underline;
     }
   @media (min-width: 800px) {
-    font-size: 18px;
+    font-size: 16px;
+    margin-top: 15px;
   }
-
-  margin-top: 20px;
+ 
+  margin-top: 5px;
   font-size: 14px;
   display: flex;
 align-items: center;
-  font-weight: 600;
+  font-weight: 300;
+  font-weight: 300;
   //height: 20px;
 `
 

@@ -6,39 +6,56 @@ import {Button} from "@cred/neopop-web/lib/components";
 import axios from "axios";
 
 const Container= styled.div`
-  padding: 5px 10px;
+  //padding: 5px 10px;
   @media (min-width: 800px) {
-    padding: 10px 20px;
+    //padding: 10px 20px;
   }
-  background-color: #ffffff;
-  border-radius: 6px;
-  border: 1px solid black;
 `
 
 const SearchInput = styled.input`
   all: unset;
   color: #000;
-  flex: 1;
   height: 100%;
-  @media (min-width: 800px) {
-    font-size: 25px;
+  @media (min-width: 600px) {
+    font-size: 16px;
   }
-  font-size: 20px;
+  @media (min-width: 800px) {
+    font-size: 20px;
+  }
+  flex: 1;
+  
+  font-size: 14px;
   margin-right: 10px;
 `
 
-const InputWithIcon = styled.div`
+const InnerContainer = styled.div`
     display: flex;
-  flex-direction: row;
-  align-items: center;
-  //height: 108px;
+  @media (min-width: 600px) {
+    flex-direction: row;
+    align-items: center;
+  }
+  flex-direction: column;
+  border-radius: 6px;
 `
 
 const StyledImage = styled(Image)`
   @media (min-width: 800px) {
-    margin-right: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
   }
+ padding: 2px;
   margin-right: 10px;
+`
+const InputWithIcon = styled.div`
+  background-color: #ffffff;
+  padding: 5px 0px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  height: 100%;
+  border-radius: 3px;
+  
 `
 
 function SearchField(props) {
@@ -64,17 +81,20 @@ function SearchField(props) {
 
     return (
         <Container>
-            <InputWithIcon>
-                <StyledImage
-                    priority
-                    src="/icons8-search-48.svg"
-                    width={30}
-                    height={30}
-                    alt="Search Icon"
+            <InnerContainer>
+                <InputWithIcon>
+                    <StyledImage
+                        priority
+                        src="/icons8-search-48.svg"
+                        width={30}
+                        height={30}
+                        alt="Search Icon"
                     />
-                <SearchInput type="text" onChange={setSearchQuery} value={query} placeholder={"Discover your next favorite course at U of I"}/>
+                    <SearchInput type="text" onChange={setSearchQuery} value={query} placeholder={"Involves fieldwork or outdoor activities"}/>
+
+                </InputWithIcon>
                 <Button onClick={getCourse} size={"medium"} textStyle={{fontSize: 16, fontWeight: 600}} kind="elevated">Search</Button>
-            </InputWithIcon>
+            </InnerContainer>
 
         </Container>
     );
