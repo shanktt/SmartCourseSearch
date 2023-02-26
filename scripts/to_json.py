@@ -30,10 +30,10 @@ for i, row in df.iterrows():
             else:
                 dic_entry[col] = []
         elif idx == 7:
-            if isinstance(val, float):
-                dic_entry[col] = 'None'
-            else:
-                dic_entry[col] = val
+            # if isinstance(val, float):
+            #     dic_entry[col] = 'None'
+            # else:
+            dic_entry[col] = val
         elif idx == 8:
             if isinstance(val, str):
                 dic_entry[col] = fix_list(val)
