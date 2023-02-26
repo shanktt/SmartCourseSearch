@@ -43,7 +43,7 @@ const gradientKeyframes = keyframes`
 const Main = styled.main`
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(-45deg, #ef9c82, #f59ec0, #85d4ef, #8ff6de);
+  background: linear-gradient(-45deg, #85d4ef, #8ff6de, #ef9c82, #f59ec0 );
   background-size: 400% 400%;
   animation: ${gradientKeyframes} 300s ease infinite;
   height: 100vh;
@@ -52,6 +52,8 @@ const Main = styled.main`
   align-items: center;
 `
 const SearchMenuContainer = styled.div`
+    padding-bottom: 20px;
+  border-bottom: 2px solid black;
     
 `
 
@@ -59,7 +61,7 @@ const ShowOptions = styled.div`
     span {
       text-decoration: underline;
     }
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: 18px;
   display: flex;
 align-items: center;
@@ -69,7 +71,11 @@ align-items: center;
 
 
 const PageContainer = styled.div`
-  width: 880px;
+  margin-left: 10px;
+  margin-right: 10px;
+  @media (min-width: 900px) {
+    width: 880px;
+  }
 `
 
 const SelectContainer = styled.div`
@@ -110,10 +116,27 @@ export default function Home() {
                                         border:  state.isFocused ? '1px solid black' : '1px solid black',
                                     }
                                   ),
+                                  menu: (baseStyles, state) => (
+                                      {
+                                          ...baseStyles,
+                                          border: "unset",
+                                          borderWidth: "1px",
+                                          borderStyle: "solid",
+                                          borderColor: "black"
+                                      }
+                                  ),
                                 option: (baseStyles, state) => (
                                     {
                                         ...baseStyles,
+                                        backgroundColor: "unset",
+                                        paddingTop: '5px',
+                                        paddingBottom: '5px',
                                         fontSize: '14px',
+                                        cursor: "pointer",
+                                        ':hover': {
+                                          textDecoration: 'underline'
+                                        },
+                                        transition: "textDecoration 250ms ease 0s, opacity 250ms ease 0s"
                                     }
                                 )
                           }}
@@ -129,14 +152,12 @@ export default function Home() {
                   </ShowOptions>
 
               </SearchMenuContainer>
-
               <br/>
               <CourseCard />
               <br/>
               <CourseCard />
               <br/>
               <CourseCard />
-
           </PageContainer>
           </GlobalContextProvider>
       </Main>

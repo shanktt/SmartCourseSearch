@@ -7,15 +7,27 @@ const Container = styled.nav`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 880px;
+  width: 100%;
+  @media (min-width: 900px) {
+    width: 880px;
+  }
 `
 
+
 const Logo = styled(Link)`
+  //marin-top: 10px;
   font-family: var(--font-open);
   font-weight: 500;
-  font-size: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  @media (min-width: 650px) {
+    font-size: 50px;
+  }
+  @media (min-width: 450px) {
+    font-size: 30px;
+  }
+  font-size: 25px;
   color: #000;
-  
   border-bottom: 3px solid #000;
 
 `
