@@ -21,10 +21,12 @@ const Logo = styled(Link)`
   font-weight: 500;
   margin-left: 10px;
   margin-right: 10px;
+  margin-top: 10px;
   @media (min-width: 450px) {
     font-size: 30px;
   }
   @media (min-width: 650px) {
+    margin-top: 0px;
     font-size: 50px;
   }
   font-size: 25px;

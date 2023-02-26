@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {GlobalContext} from "@/components/globalContext";
 import Image from 'next/image'
 import {Button} from "@cred/neopop-web/lib/components";
+import axios from "axios";
 
 const Container= styled.div`
   padding: 5px 10px;
@@ -41,13 +42,21 @@ const StyledImage = styled(Image)`
 `
 
 function SearchField(props) {
-    const {query, setQuery} = useContext(GlobalContext)
+    const {query, setQuery, filterOptions} = useContext(GlobalContext)
 
 
 
 
     const setSearchQuery = (e) => {
-        console.log(setQuery(e.target.value))
+        setQuery(e.target.value)
+    }
+    const getCourse = () => {
+        axios.post('/api/get_courses', {
+            query,
+            filterOptions,
+        }).then((res) => {
+            console.log(res)
+        })
     }
 
     return (
@@ -61,7 +70,7 @@ function SearchField(props) {
                     alt="Search Icon"
                     />
                 <SearchInput type="text" onChange={setSearchQuery} value={query} placeholder={"Discover your next favorite course at U of I"}/>
-                <Button size={"medium"} textStyle={{fontSize: 16, fontWeight: 600}} kind="elevated">Search</Button>
+                <Button onClick={getCourse} size={"medium"} textStyle={{fontSize: 16, fontWeight: 600}} kind="elevated">Search</Button>
             </InputWithIcon>
 
         </Container>

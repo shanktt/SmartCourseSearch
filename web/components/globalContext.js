@@ -6,11 +6,14 @@ export const GlobalContext = createContext();
 
 function GlobalContextProvider({children}) {
     const [query, setQuery] = useState('');
+    const [filterOptions, setFilterOptions] = useState([]);
 
     return (
         <GlobalContext.Provider value={{
             query,
-            setQuery
+            setQuery,
+            filterOptions,
+            setFilterOptions
         }}>
             {children}
         </GlobalContext.Provider>
