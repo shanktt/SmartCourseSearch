@@ -42,7 +42,7 @@ const StyledImage = styled(Image)`
 `
 
 function SearchField(props) {
-    const {query, setQuery, filterOptions} = useContext(GlobalContext)
+    const {query, setQuery, filterOptions, setSearchResults} = useContext(GlobalContext)
 
 
 
@@ -55,7 +55,10 @@ function SearchField(props) {
             query,
             filterOptions,
         }).then((res) => {
-            console.log(res)
+            let data = res.data
+            setSearchResults(data)
+        }).catch(err => {
+            console.log(err)
         })
     }
 

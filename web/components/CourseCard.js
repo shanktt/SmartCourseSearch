@@ -89,39 +89,46 @@ const Tag = styled.div`
   box-shadow: 2px 2px 0px #000;
 `
 
-function CourseCard({props}) {
-    let subject = 'AAS'
-    let courseNumber = 100
-    let courseTitle = "Intro Asian American Studies"
-    let courseDescription = "Interdisciplinary introduction to the basic concepts and approaches in Asian American Studies. Surveys the various dimensions of Asian American experiences including history, social organization, literature, arts, and politics."
-    let hours = "3 hours"
-    let tags= [15, 18]
-    // 30107
-    let avgGpa = 3.43666667
+const options = [
+    'Nat Sci & Tech',
+    'Social & Beh Sci' ,
+    'Advanced Composition' ,
+    'Grand Challenge' ,
+    'Campus Honors/Chancellor School' ,
+    'Quantitative Reasoning II' ,
+    'Humanities' ,
+    'Cultural Studies' ,
+    'Composition I' ,
+    'Quantitative Reasoning I' ,
+    'James Scholars' ,
+];
+function CourseCard({cardInfo}) {
     return (
         <Container>
             <TitleContainer>
                 <Heading>
-                    <span>                    {subject}&nbsp;{courseNumber}:&nbsp;{courseTitle}
-
-
+                    <span> {cardInfo.subject}&nbsp;{cardInfo.course}:&nbsp;{cardInfo.name}
                     </span>
                 </Heading>
-                <AvgGpa>
-                    Avg GPA: {avgGpa.toFixed(2)}
-                </AvgGpa>
+                {
+                    cardInfo.avg_grade > 0 &&
+                    <AvgGpa>
+                        Avg GPA: {cardInfo.avg_grade.toFixed(2)}
+                    </AvgGpa>
+                }
+
             </TitleContainer>
             <Description>
-                {courseDescription}
+                {cardInfo.description}
             </Description>
             <TagList>
-                <Tag>
-                    Advanced Composition
-                </Tag>
-                <Tag>
-                    Western/Comparative Culture
-                </Tag>
-
+                {cardInfo.degree_attrs_codes.map((val, idx) => {
+                    if (val == -1) {
+                        return <></>
+                    }
+                    return <Tag key={idx}>
+                    {options[val]}
+                </Tag>})}
             </TagList>
         </Container>
     );

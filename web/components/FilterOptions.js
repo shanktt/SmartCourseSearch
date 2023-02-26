@@ -5,21 +5,21 @@ import {GlobalContext} from "@/components/globalContext";
 
 const animatedComponents = makeAnimated();
 const options = [
-    { value: '0', label: 'Nat Sci & Tech' },
-    { value: '1', label: 'Social & Beh Sci' },
-    { value: '2', label: 'Advanced Composition' },
-    { value: '3', label: 'Grand Challenge' },
-    { value: '4', label: 'Campus Honors/Chancellor School' },
-    { value: '5', label: 'Quantitative Reasoning II' },
-    { value: '6', label: 'Humanities' },
-    { value: '8', label: 'Cultural Studies' },
-    { value: '9', label: 'Composition I' },
-    { value: '10', label: 'Quantitative Reasoning I' },
-    { value: '11', label: 'James Scholars' },
-    { value: '11', label: '1 Credit' },
-    { value: '11', label: '2 Credit' },
-    { value: '11', label: '3 Credit' },
-    { value: '11', label: '4 Credit' }
+    { value: 0, label: 'Nat Sci & Tech' },
+    { value: 1, label: 'Social & Beh Sci' },
+    { value: 2, label: 'Advanced Composition' },
+    { value: 3, label: 'Grand Challenge' },
+    { value: 4, label: 'Campus Honors/Chancellor School' },
+    { value: 5, label: 'Quantitative Reasoning II' },
+    { value: 6, label: 'Humanities' },
+    { value: 8, label: 'Cultural Studies' },
+    { value: 9, label: 'Composition I' },
+    { value: 10, label: 'Quantitative Reasoning I' },
+    { value: 11, label: 'James Scholars' },
+    { value: 12, label: '1 Credit' },
+    { value: 13, label: '2 Credit' },
+    { value: 14, label: '3 Credit' },
+    { value: 15, label: '4 Credit' }
 
 ];
 function FilterOptions(props) {

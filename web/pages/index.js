@@ -3,10 +3,9 @@ import styled, {keyframes} from 'styled-components'
 import Navbar from "@/components/Navbar";
 import SearchField from "@/components/SearchField";
 import GlobalContextProvider from "@/components/globalContext";
-import CourseCard from "@/components/CourseCard";
 import React from "react";
 import FilterOptions from "@/components/FilterOptions";
-
+import CardsContainer from "@/components/CardsContainer";
 const gradientKeyframes = keyframes`
   0% {
     background-position: 0% 50%;
@@ -70,19 +69,7 @@ const SelectContainer = styled.div`
   margin-left: 20px;
 `
 
-const CardsContainer = styled.div`
-  @media (min-width: 900px) {
-    flex-direction: column;
-    display: flex;
-    margin-top: 0px;
-  }
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  grid-gap: 15px;
-  margin-top: 30px;
-  width: 100%;
-  justify-content: center;
-`
+
 
 
 export default function Home() {
@@ -114,11 +101,7 @@ export default function Home() {
                   </ShowOptions>
 
               </SearchMenuContainer>
-                  <CardsContainer>
-                      <CourseCard />
-                      <CourseCard />
-                      <CourseCard />
-                  </CardsContainer>
+              <CardsContainer/>
               <br/>
               <br/>
           </PageContainer>
