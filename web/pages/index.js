@@ -1,27 +1,85 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 import Navbar from "@/components/Navbar";
 import SearchField from "@/components/SearchField";
 import GlobalContextProvider from "@/components/globalContext";
 import CourseCard from "@/components/CourseCard";
+import React, {useState} from "react";
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 
-const inter = Inter({ subsets: ['latin'] })
+const animatedComponents = makeAnimated();
+const options = [
+    { value: '0', label: 'Nat Sci & Tech' },
+    { value: '1', label: 'Social & Beh Sci' },
+    { value: '2', label: 'Advanced Composition' },
+    { value: '3', label: 'Grand Challenge' },
+    { value: '4', label: 'Campus Honors/Chancellor School' },
+    { value: '5', label: 'Quantitative Reasoning II' },
+    { value: '6', label: 'Humanities' },
+    { value: '8', label: 'Cultural Studies' },
+    { value: '9', label: 'Composition I' },
+    { value: '10', label: 'Quantitative Reasoning I' },
+    { value: '11', label: 'James Scholars' },
+    { value: '11', label: '1 Credit' },
+    { value: '11', label: '2 Credit' },
+    { value: '11', label: '3 Credit' },
+    { value: '11', label: '4 Credit' }
+
+];
+
+const gradientKeyframes = keyframes`
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+`
 
 const Main = styled.main`
   height: 100vh;
   width: 100vw;
-  background-color: #0F1013;
+  background: linear-gradient(-45deg, #ef9c82, #f59ec0, #85d4ef, #8ff6de);
+  background-size: 400% 400%;
+  animation: ${gradientKeyframes} 300s ease infinite;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+const SearchMenuContainer = styled.div`
+    
+`
+
+const ShowOptions = styled.div`
+    span {
+      text-decoration: underline;
+    }
+  margin-top: 10px;
+  font-size: 18px;
+  display: flex;
+align-items: center;
+  font-weight: 600;
+  //height: 20px;
 `
 
 
 const PageContainer = styled.div`
-  padding-left: 400px;
-  padding-right: 400px;
+  width: 880px;
+`
+
+const SelectContainer = styled.div`
+  flex: 1;
+  margin-left: 20px;
 `
 
 export default function Home() {
+
+
   return (
     <>
       <Head>
@@ -35,7 +93,43 @@ export default function Home() {
           <Navbar />
           <PageContainer>
               <br/>
-              <SearchField />
+              <SearchMenuContainer>
+                  <SearchField />
+
+                  <ShowOptions>
+                      <span>
+                        Refine Search:
+                      </span>
+                      <SelectContainer>
+                          <Select
+                              styles={{
+                                control:(baseStyles, state) => (
+                                    {
+                                        ...baseStyles,
+                                        boxShadow: "unset",
+                                        border:  state.isFocused ? '1px solid black' : '1px solid black',
+                                    }
+                                  ),
+                                option: (baseStyles, state) => (
+                                    {
+                                        ...baseStyles,
+                                        fontSize: '14px',
+                                    }
+                                )
+                          }}
+                              placeholder={'Choose a filter'}
+                              closeMenuOnSelect={false}
+                              components={animatedComponents}
+                              isMulti
+                              width={'100%'}
+                              options={options}
+                          />
+                      </SelectContainer>
+
+                  </ShowOptions>
+
+              </SearchMenuContainer>
+
               <br/>
               <CourseCard />
               <br/>

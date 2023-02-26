@@ -1,4 +1,3 @@
-import {ChakraProvider} from '@chakra-ui/react'
 import {ThemeProvider} from 'styled-components'
 import {Open_Sans, Buenard} from '@next/font/google'
 import GlobalStyle from '../components/globalStyles'
@@ -22,7 +21,6 @@ function MyApp({
 
 
     return (
-        <ChakraProvider>
             <ThemeProvider theme={theme}>
 
                     <GlobalStyle/>
@@ -36,7 +34,6 @@ function MyApp({
                     </main>
 
             </ThemeProvider>
-        </ChakraProvider>
     )
 }
 

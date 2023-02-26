@@ -6,13 +6,14 @@ import {Button} from "@cred/neopop-web/lib/components";
 
 const Container= styled.div`
   padding: 10px 20px;
-  background-color: #20252d;
+  background-color: #ffffff;
   border-radius: 6px;
+  border: 1px solid black;
 `
 
 const SearchInput = styled.input`
   all: unset;
-  color: #BA7F0D;
+  color: #000;
   flex: 1;
   height: 100%;
   font-size: 25px;
