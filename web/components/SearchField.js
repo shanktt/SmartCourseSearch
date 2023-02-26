@@ -90,7 +90,7 @@ function SearchField(props) {
                         height={30}
                         alt="Search Icon"
                     />
-                    <SearchInput type="text" onChange={setSearchQuery} value={query} placeholder={"Involves fieldwork or outdoor activities"}/>
+                    <SearchInput type="text" onChange={setSearchQuery} value={query} placeholder={"Describe your dream course"}/>
 
                 </InputWithIcon>
                 <Button onClick={getCourse} size={"medium"} textStyle={{fontSize: 16, fontWeight: 600}} kind="elevated">Search</Button>

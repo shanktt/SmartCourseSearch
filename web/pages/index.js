@@ -6,6 +6,8 @@ import GlobalContextProvider from "@/components/globalContext";
 import React from "react";
 import FilterOptions from "@/components/FilterOptions";
 import CardsContainer from "@/components/CardsContainer";
+import {Button} from "@cred/neopop-web/lib/components";
+import SearchDescription from "@/components/SearchDescription";
 const gradientKeyframes = keyframes`
   0% {
     background-position: 0% 50%;
@@ -74,6 +76,7 @@ const SelectContainer = styled.div`
 
 
 
+
 export default function Home() {
 
 
@@ -90,8 +93,8 @@ export default function Home() {
           <Navbar />
           <PageContainer>
               <SearchMenuContainer>
+                  <SearchDescription/>
                   <SearchField />
-
                   <ShowOptions>
                       <span>
                         Refine Search:

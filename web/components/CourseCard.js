@@ -107,7 +107,7 @@ function CourseCard({cardInfo}) {
         <Container>
             <TitleContainer>
                 <Heading>
-                    <span> {cardInfo.subject}&nbsp;{cardInfo.course}:&nbsp;{cardInfo.name}
+                    <span> {cardInfo.subject}&nbsp;{cardInfo.course}:&nbsp;{cardInfo.name.replaceAll('amp;', '')}
                     </span>
                 </Heading>
                 {

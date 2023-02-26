@@ -12,27 +12,25 @@ const options = [
     { value: 4, label: 'Campus Honors/Chancellor School' },
     { value: 5, label: 'Quantitative Reasoning II' },
     { value: 6, label: 'Humanities' },
-    { value: 8, label: 'Cultural Studies' },
-    { value: 9, label: 'Composition I' },
-    { value: 10, label: 'Quantitative Reasoning I' },
-    { value: 11, label: 'James Scholars' },
-    { value: 12, label: '1 Credit' },
-    { value: 13, label: '2 Credit' },
-    { value: 14, label: '3 Credit' },
-    { value: 15, label: '4 Credit' }
-
+    { value: 7, label: 'Cultural Studies' },
+    { value: 8, label: 'Composition I' },
+    { value: 9, label: 'Quantitative Reasoning I' },
+    { value: 10, label: 'James Scholars' },
+    { value: 11, label: '1 Credit' },
+    { value: 12, label: '2 Credit' },
+    { value: 13, label: '3 Credit' },
+    { value: 14, label: '4 Credit' }
 ];
 function FilterOptions(props) {
     const {filterOptions, setFilterOptions} = useContext(GlobalContext)
 
     const optionsHandler = selectedOptions => {
         setFilterOptions(selectedOptions);
-        console.log(filterOptions)
-        console.log(selectedOptions)
     };
     return (
         <Select
             onChange={optionsHandler}
+            value={filterOptions}
             styles={{
                 control:(baseStyles, state) => (
                     {

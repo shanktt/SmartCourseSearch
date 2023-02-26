@@ -31,7 +31,7 @@ const getEmbeddings = async (query) => {
 }
 
 const getPath = (option) => {
-  if (option.value < 12) {
+  if (option.value < 11) {
     return "degree_attrs_codes"
   } else {
     return "credit_hours"
