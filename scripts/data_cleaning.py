@@ -1,5 +1,22 @@
 import pandas as pd
-import numpy as np
+from bs4 import BeautifulSoup
+import requests
+
+def getSubjectNamesDict():
+    URL = 'https://courses.illinois.edu/cisapp/explorer/catalog/2023/spring.xml'
+
+    url_link = requests.get(URL)
+    soup = BeautifulSoup(url_link.text, "lxml")
+
+    subjects = soup.find_all('subject')
+
+    dic = {}
+    for subject in subjects:
+        # print(subject.id)
+        # break
+        # print(subject['id'] + " " + subject.text)
+        dic[subject['id']] = subject.text
+    return dic
 
 enums = {
     'Nat Sci & Tech - Phys Sciences course': 'Nat Sci & Tech', 
@@ -65,5 +82,15 @@ for i, row in combined.iterrows():
 combined = combined[combined["Credit Hours"].str.contains("TO|OR|To|Or|to|or")==False]
 combined["Credit Hours"] = combined["Credit Hours"].str.extract('(\d+)')
 combined = combined[~combined['Description'].str.match(r'Same as.*')]
+
+combined['Degree Attributes'].fillna(value='[None]', inplace=True)
+combined['Average Grade'].fillna(value=-1.0, inplace=True)
+combined.loc[combined['Degree Attributes Codes'] == '', 'Degree Attributes Codes'] = '[-1]'
+
+abbrevToFullNameSubjects = getSubjectNamesDict()
+combined['Subject Full Name'] = combined['Subject'].apply(lambda x: abbrevToFullNameSubjects[x])
+
+combined['Description Vectorized'] = 'Subject is ' + combined['Subject Full Name'] + '.\n' + 'Name is ' + combined['Name'] + '.\n' + 'Description is ' + combined['Description']
+
 print(combined.shape)
 combined.to_csv("data/final.csv", index=False)
