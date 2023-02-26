@@ -12,7 +12,7 @@ const Container = styled.div`
     margin-top: 20px;
   }
   padding: 10px 15px;
-  width: 320px;
+  min-width: 320px;
 `
 
 const TitleContainer = styled.div`

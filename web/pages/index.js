@@ -77,7 +77,7 @@ const CardsContainer = styled.div`
     margin-top: 0px;
   }
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-gap: 15px;
   margin-top: 30px;
   width: 100%;
