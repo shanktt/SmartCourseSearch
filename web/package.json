@@ -10,8 +10,12 @@
   },
   "dependencies": {
     "@cred/neopop-web": "^1.0.0",
+    "@prisma/client": "^5.0.0",
+    "@vercel/postgres": "^0.4.0",
+    "@xenova/transformers": "^2.4.2",
     "axios": "^1.4.0",
     "next": "^13.4.12",
+    "prisma": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-select": "^5.7.4",
