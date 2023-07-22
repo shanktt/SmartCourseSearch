@@ -90,17 +90,13 @@ const Tag = styled.div`
 `
 
 const options = [
-    'Nat Sci & Tech',
-    'Social & Beh Sci' ,
-    'Advanced Composition' ,
-    'Grand Challenge' ,
-    'Campus Honors/Chancellor School' ,
-    'Quantitative Reasoning II' ,
-    'Humanities' ,
-    'Cultural Studies' ,
-    'Composition I' ,
-    'Quantitative Reasoning I' ,
-    'James Scholars' ,
+  'Social & Behavioral Sciences',
+  'Cultural Studies',
+  'Humanities & the Arts',
+  'Advanced Composition',
+  'Quantitative Reasoning',
+  'Natural Sciences & Technology',
+  'Composition I',
 ];
 function CourseCard({cardInfo}) {
     return (

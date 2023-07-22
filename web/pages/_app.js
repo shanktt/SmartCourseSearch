@@ -1,5 +1,5 @@
 import {ThemeProvider} from 'styled-components'
-import {Open_Sans, Buenard} from '@next/font/google'
+import {Open_Sans, Buenard} from "next/font/google"
 import GlobalStyle from '../components/globalStyles'
 const openSans = Open_Sans({subsets: ['latin'], variable: '--font-open'},)
 const buenard = Buenard({weight: "700", variable: '--font-b', subsets: ['latin'],})
