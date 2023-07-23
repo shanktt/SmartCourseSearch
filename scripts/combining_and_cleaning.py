@@ -17,7 +17,20 @@ def download_gpa_csv(term, year):
 
     print(f"Downloaded {downloaded_file_name}")
     return downloaded_file_name
+
+def get_min_max_gpa(record):
+    credit_hours_str = record['Credit Hours'].lower()
+    credit_hours_str = credit_hours_str.replace(' hours.', '').replace(' hour.', '')
     
+    if ' to ' in credit_hours_str:
+        min_hours, max_hours = map(float, credit_hours_str.split(' to '))
+    elif ' or ' in credit_hours_str:
+        min_hours, max_hours = map(float, credit_hours_str.split(' or '))
+    else:  # it's a single number
+        min_hours = max_hours = float(credit_hours_str)
+
+    return min_hours,max_hours
+
 # TODO clean up files
 def combine_course_gpa_datasets(gpa_data, course_file):
     df = pd.read_csv(gpa_data) 
@@ -33,15 +46,21 @@ def combine_course_gpa_datasets(gpa_data, course_file):
         key = (record['Major Abbreviation'], record['Course Number'])
         record['Average GPA'] = gpa_records.get(key, 0)
 
-    # new_course_file_name = course_file.replace('courses', 'gpa-courses')
-    # with open(new_course_file_name, 'w') as f:
-    #     json.dump(course_data, f, indent=4)
+        min_hours, max_hours = get_min_max_gpa(record)
+
+        record['min_credit_hours'] = min_hours
+        record['max_credit_hours'] = max_hours
 
     print('Combined GPA and Course Datasets')
 
-    # return new_course_file_name
+    new_course_file_name = course_file.replace('courses', 'gpa-courses')
+    with open(new_course_file_name, 'w') as f:
+        json.dump(course_data, f, indent=4)
 
 
+    return new_course_file_name
+
+# TODO add optional args to specify output file name / path
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Download CSV file from GitHub.")
     parser.add_argument("term", type=str, help="Term of the file (sp, su, wi, fa)")
