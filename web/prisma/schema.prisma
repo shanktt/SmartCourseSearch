@@ -10,23 +10,18 @@ generator client {
   previewFeatures = ["postgresqlExtensions"]
 }
  
-model Pokemon {
-  id         String  @id @default(cuid())
-  number     Int
-  name       String
-  type1      String
-  type2      String?
-  total      Int
-  hp         Int
-  attack     Int
-  defense    Int
-  spAtk      Int
-  spDef      Int
-  speed      Int
-  generation Int
-  legendary  Boolean
+model Course {
+  id                 String          @id @default(uuid())
+  Major              String
+  MajorAbbreviation  String
+  CourseNumber       String
+  CourseName         String
+  Description        String
+  CreditHours        String
+  AverageGPA         Float
+  MinCreditHours     Float
+  MaxCreditHours     Float
+  DegreeAttributes   String[]
 
-  embedding Unsupported("vector(1536)")?
-
-  @@map("pokemon")
+  embedding Unsupported("vector(384)")?
 }
