@@ -8,7 +8,7 @@ dotenv.config({ path: '../.env.development.local' })
 if (!process.env.POSTGRES_URL) {
   throw new Error('process.env.POSTGRES_URL is not defined. Please set it.')
 }
-
+// TODO add check to see if db already seeded
 async function main() {
     // Get the path to the JSON file from the command line arguments
     const filePath = process.argv[2]
@@ -21,36 +21,38 @@ async function main() {
     const fileContents = fs.readFileSync(filePath, 'utf-8')
     const records = JSON.parse(fileContents)
   
+    // Initialize sentence-embedding model
     const pipe = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2', {
         quantized: false,
     });
 
     // Iterate over each record and create a new entry in the database
-    for (let record of records) {
-        let result = await pipe(record.Description);
-        console.log(result);
-        break;
+    for (let record of records) {  
+        const course = await prisma.course.create({
+            data: {
+                Major: record.Major,
+                MajorAbbreviation: record['Major Abbreviation'],
+                CourseNumber: record['Course Number'],
+                CourseName: record['Course Name'],
+                Description: record.Description,
+                CreditHours: record['Credit Hours'],
+                AverageGPA: record['Average GPA'],
+                MinCreditHours: record.min_credit_hours,
+                MaxCreditHours: record.max_credit_hours,
+                DegreeAttributes: record['Degree Attributes']
+            }
+        })
 
-
-      // We'll assume that DegreeAttributes is an array of strings
-    //   const attributes = record['Degree Attributes'].map(attr => ({ name: attr }))
-  
-    //   await prisma.course.create({
-    //     data: {
-    //       Major: record.Major,
-    //       MajorAbbreviation: record['Major Abbreviation'],
-    //       CourseNumber: record['Course Number'],
-    //       CourseName: record['Course Name'],
-    //       Description: record.Description,
-    //       CreditHours: record['Credit Hours'],
-    //       AverageGPA: record['Average GPA'],
-    //       MinCreditHours: record.min_credit_hours,
-    //       MaxCreditHours: record.max_credit_hours,
-    //       DegreeAttributes: {
-    //         create: attributes
-    //       }
-    //     }
-    //   })
+        // Add the embedding
+        let embedding = await pipe(record.Description, { pooling: 'mean', normalize: true });
+        let embeddingArray = Array.from(embedding.data);
+        await prisma.$executeRaw`
+            UPDATE Course
+            SET embedding = ${embeddingArray}::vector
+            WHERE id = ${course.id}
+        `
+         
+        console.log(`Added ${course['MajorAbbreviation']} ${course['CourseNumber']}`)
     }
 }
 
