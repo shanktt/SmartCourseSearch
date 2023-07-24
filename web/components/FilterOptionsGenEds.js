@@ -4,32 +4,16 @@ import makeAnimated from 'react-select/animated';
 import {GlobalContext} from "@/components/globalContext";
 
 const animatedComponents = makeAnimated();
-const options = [
-    { value: 0, label: 'Social & Behavioral Sciences' },
-    { value: 1, label: 'Cultural Studies' },
-    { value: 2, label: 'Humanities & the Arts' },
-    { value: 3, label: 'Advanced Composition' },
-    { value: 4, label: 'Quantitative Reasoning' },
-    { value: 5, label: 'Natural Sciences & Technology' },
-    { value: 6, label: 'Composition I' },
-    { value: 7, label: '0 Credit' },
-    { value: 8, label: '1 Credit' },
-    { value: 9, label: '2 Credit' },
-    { value: 10, label: '3 Credit' },
-    { value: 11, label: '4 Credit' },
-    { value: 12, label: '5 Credit' },
-    { value: 13, label: '6 Credit' },
-    { value: 14, label: '7 Credit' },
-    { value: 15, label: '8 Credit' },
-    { value: 16, label: '6 Credit' },
-    { value: 17, label: '7 Credit' },
-    { value: 18, label: '8 Credit' },
-    { value: 15, label: '9 Credit' },
-    { value: 16, label: '10 Credit' },
-    { value: 17, label: '11 Credit' },
-    { value: 18, label: '12 Credit' },
+const genEdOptions = [
+    { value: 'Social & Behavioral Sciences', label: 'Social & Behavioral Sciences' },
+    { value: 'Cultural Studies', label: 'Cultural Studies' },
+    { value: 'Humanities & the Arts', label: 'Humanities & the Arts' },
+    { value: 'Advanced Composition', label: 'Advanced Composition' },
+    { value: 'Quantitative Reasoning', label: 'Quantitative Reasoning' },
+    { value: 'Natural Sciences & Technology', label: 'Natural Sciences & Technology' },
+    { value: 'Composition I', label: 'Composition I' },
 ];
-function FilterOptions(props) {
+function FilterOptionsGenEds(props) {
     const {filterOptions, setFilterOptions} = useContext(GlobalContext)
 
     const optionsHandler = selectedOptions => {
@@ -71,14 +55,15 @@ function FilterOptions(props) {
                     }
                 )
             }}
-            placeholder={'Choose a filter'}
+            placeholder={'Filter by Gen Eds'}
             closeMenuOnSelect={false}
             components={animatedComponents}
             isMulti
             width={'100%'}
-            options={options}
+            options={genEdOptions}
         />
+
     );
 }
 
-export default FilterOptions;
+export default FilterOptionsGenEds;

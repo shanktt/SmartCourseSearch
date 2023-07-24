@@ -59,7 +59,7 @@ const InputWithIcon = styled.div`
 `
 
 function SearchField(props) {
-    const {query, setQuery, filterOptions, setSearchResults} = useContext(GlobalContext)
+    const {query, setQuery, filterOptions, filterOptionsCreditHours, setSearchResults} = useContext(GlobalContext)
 
 
 
@@ -68,15 +68,16 @@ function SearchField(props) {
         setQuery(e.target.value)
     }
     const getCourse = () => {
-        axios.post('/api/get_courses', {
-            query,
-            filterOptions,
-        }).then((res) => {
-            let data = res.data
-            setSearchResults(data)
-        }).catch(err => {
-            console.log(err)
-        })
+      axios.post('/api/get_courses', {
+          query,
+          filterOptions,
+          filterOptionsCreditHours
+      }).then((res) => {
+          let data = res.data
+          setSearchResults(data)
+      }).catch(err => {
+          console.log(err)
+      })
     }
 
     return (

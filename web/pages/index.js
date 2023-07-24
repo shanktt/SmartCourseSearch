@@ -4,9 +4,9 @@ import Navbar from "@/components/Navbar";
 import SearchField from "@/components/SearchField";
 import GlobalContextProvider from "@/components/globalContext";
 import React from "react";
-import FilterOptions from "@/components/FilterOptions";
+import FilterOptionsGenEds from "@/components/FilterOptionsGenEds";
+import FilterOptionsCreditHours from "@/components/FilterOptionsCreditHours";
 import CardsContainer from "@/components/CardsContainer";
-import {Button} from "@cred/neopop-web/lib/components";
 import SearchDescription from "@/components/SearchDescription";
 const gradientKeyframes = keyframes`
   0% {
@@ -40,9 +40,9 @@ const SearchMenuContainer = styled.div`
 `
 
 const ShowOptions = styled.div`
-    span {
-      text-decoration: underline;
-    }
+  span {
+    text-decoration: underline;
+  }
   @media (min-width: 800px) {
     font-size: 16px;
     margin-top: 15px;
@@ -51,10 +51,9 @@ const ShowOptions = styled.div`
   margin-top: 5px;
   font-size: 14px;
   display: flex;
-align-items: center;
+  align-items: center;
   font-weight: 300;
   font-weight: 300;
-  //height: 20px;
 `
 
 
@@ -69,12 +68,25 @@ const PageContainer = styled.div`
 `
 
 const SelectContainer = styled.div`
-  flex: 1;
+  display: flex;
   margin-left: 20px;
+  flex: 1;
 `
+const GenEdsFilterContainer = styled.div`
+  width: 70%;
 
+  @media (max-width: 768px) {
+    width: 50%;
+  }
+`;
 
+const CreditHoursFilterContainer = styled.div`
+  width: 30%;
 
+  @media (max-width: 768px) {
+    width: 50%;
+  }
+`;
 
 
 export default function Home() {
@@ -100,11 +112,14 @@ export default function Home() {
                         Refine Search:
                       </span>
                       <SelectContainer>
-                          <FilterOptions />
+                        <GenEdsFilterContainer>
+                          <FilterOptionsGenEds />
+                        </GenEdsFilterContainer>
+                        <CreditHoursFilterContainer>
+                          <FilterOptionsCreditHours />
+                        </CreditHoursFilterContainer>
                       </SelectContainer>
-
                   </ShowOptions>
-
               </SearchMenuContainer>
               <CardsContainer/>
               <br/>

@@ -103,28 +103,29 @@ function CourseCard({cardInfo}) {
         <Container>
             <TitleContainer>
                 <Heading>
-                    <span> {cardInfo.subject}&nbsp;{cardInfo.course}:&nbsp;{cardInfo.name.replaceAll('amp;', '')}
+                    <span> {cardInfo.MajorAbbreviation}&nbsp;{cardInfo.CourseNumber}:&nbsp;{cardInfo.CourseName.replaceAll('amp;', '')}
                     </span>
                 </Heading>
                 {
-                    cardInfo.avg_grade > 0 &&
+                    cardInfo.AverageGPA > 0 &&
                     <AvgGpa>
-                        Avg GPA: {cardInfo.avg_grade.toFixed(2)}
+                        Avg GPA: {cardInfo.AverageGPA.toFixed(2)}
                     </AvgGpa>
                 }
 
             </TitleContainer>
             <Description>
-                {cardInfo.description}
+                {cardInfo.Description}
             </Description>
             <TagList>
-                {cardInfo.degree_attrs_codes.map((val, idx) => {
-                    if (val == -1) {
-                        return <></>
-                    }
+                {cardInfo.DegreeAttributes.map((val, idx) => {
                     return <Tag key={idx}>
-                    {options[val]}
+                    {val}
                 </Tag>})}
+                {cardInfo.MinCreditHours === cardInfo.MaxCreditHours ? 
+                  <Tag>{cardInfo.MinCreditHours} Credit Hours</Tag> : 
+                  <Tag>{cardInfo.MinCreditHours} to {cardInfo.MaxCreditHours} Credit Hours</Tag>
+                }
             </TagList>
         </Container>
     );

@@ -8,6 +8,7 @@ export const GlobalContext = createContext();
 function GlobalContextProvider({children}) {
     const [query, setQuery] = useState('');
     const [filterOptions, setFilterOptions] = useState([]);
+    const [filterOptionsCreditHours, setFilterOptionsCreditHours] = useState(-1);
     const [searchResults, setSearchResults] = useState([]);
 
     return (
@@ -16,6 +17,8 @@ function GlobalContextProvider({children}) {
             setQuery,
             filterOptions,
             setFilterOptions,
+            filterOptionsCreditHours, 
+            setFilterOptionsCreditHours,
             searchResults,
             setSearchResults
         }}>

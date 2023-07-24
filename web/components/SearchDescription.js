@@ -17,19 +17,20 @@ const HelpQuery = styled.div`
 `
 
 const demoQueries = [
-    {query: "Involves fieldwork or outdoor activities", options: [{ value: 0, label: 'Nat Sci & Tech' }]},
-    {query: "talks about social justice and inequality", options: [{ value: 2, label: 'Advanced Composition' },]},
-    {query: "explore the intersection of technology and society", options: [{ value: 14, label: '3 Credit' },]},
-    {query: "food and cooking in different cultures and societies", options: [{ value: 7, label: 'Cultural Studies' },]},
-    {query: "cultural and historical significance of fashion and textiles", options: []}
+    {query: "Involves fieldwork or outdoor activities", genEdOptions: [{ value: 'Natural Sciences & Technology', label: 'Natural Sciences & Technology' }], creditHourOptions: []},
+    {query: "talks about social justice and inequality", genEdOptions: [{ value: 'Advanced Composition', label: 'Advanced Composition' }], creditHourOptions: []},
+    {query: "explore the intersection of technology and society", creditHourOptions: [{ value: 3, label: '3 Credit' }], creditHourOptions: []},
+    {query: "food and cooking in different cultures and societies", genEdOptions: [{ value: 'Cultural Studies', label: 'Cultural Studies' }], creditHourOptions: []},
+    {query: "cultural and historical significance of fashion and textiles", genEdOptions: [], creditHourOptions: []}
 ]
 
 function SearchDescription(props) {
-    const {setQuery, setFilterOptions} = useContext(GlobalContext)
+    const {setQuery, setFilterOptions, setFilterOptionsCreditHours} = useContext(GlobalContext)
     const setRandomQuery = () => {
         let randInt = Math.floor(Math.random() * 5);
         setQuery(demoQueries[randInt]['query'])
-        setFilterOptions(demoQueries[randInt]["options"])
+        setFilterOptions(demoQueries[randInt]["genEdOptions"])
+        setFilterOptionsCreditHours(demoQueries[randInt]["creditHourOptions"])
     }
 
 

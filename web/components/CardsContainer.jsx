@@ -17,7 +17,7 @@ const Container = styled.div`
   justify-content: center;
 `
 function CardsContainer(props) {
-    const {searchResults} = useContext(GlobalContext)
+    const {searchResults} = useContext(GlobalContext);
     return (
         <Container>
             {

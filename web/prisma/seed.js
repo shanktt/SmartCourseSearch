@@ -28,31 +28,33 @@ async function main() {
 
     // Iterate over each record and create a new entry in the database
     for (let record of records) {  
-        const course = await prisma.course.create({
-            data: {
-                Major: record.Major,
-                MajorAbbreviation: record['Major Abbreviation'],
-                CourseNumber: record['Course Number'],
-                CourseName: record['Course Name'],
-                Description: record.Description,
-                CreditHours: record['Credit Hours'],
-                AverageGPA: record['Average GPA'],
-                MinCreditHours: record.min_credit_hours,
-                MaxCreditHours: record.max_credit_hours,
-                DegreeAttributes: record['Degree Attributes']
-            }
-        })
+        // const course = await prisma.course.create({
+        //     data: {
+        //         Major: record.Major,
+        //         MajorAbbreviation: record['Major Abbreviation'],
+        //         CourseNumber: record['Course Number'],
+        //         CourseName: record['Course Name'],
+        //         Description: record.Description,
+        //         CreditHours: record['Credit Hours'],
+        //         AverageGPA: record['Average GPA'],
+        //         MinCreditHours: record.min_credit_hours,
+        //         MaxCreditHours: record.max_credit_hours,
+        //         DegreeAttributes: record['Degree Attributes']
+        //     }
+        // })
 
         // Add the embedding
         let embedding = await pipe(record.Description, { pooling: 'mean', normalize: true });
         let embeddingArray = Array.from(embedding.data);
-        await prisma.$executeRaw`
-            UPDATE Course
-            SET embedding = ${embeddingArray}::vector
-            WHERE id = ${course.id}
-        `
+        console.log(embeddingArray.toString());
+        break
+        // await prisma.$executeRaw`
+        //     UPDATE Course
+        //     SET embedding = ${embeddingArray}::vector
+        //     WHERE id = ${course.id}
+        // `
          
-        console.log(`Added ${course['MajorAbbreviation']} ${course['CourseNumber']}`)
+        // console.log(`Added ${course['MajorAbbreviation']} ${course['CourseNumber']}`)
     }
 }
 
