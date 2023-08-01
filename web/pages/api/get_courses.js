@@ -1,32 +1,13 @@
 import prisma from '@/lib/prisma'
-import { pipeline } from '@xenova/transformers';
+import PipelineSingleton from '@/lib/pipeline';
 
 const getEmbeddings = async (query) => {
-  // Initialize sentence-embedding model
-  const pipe = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2', {
-    quantized: false,
-  });
+  const pipe = await PipelineSingleton.getInstance();
 
   let embedding = await pipe(query, { pooling: 'mean', normalize: true });
   let embeddingArray = Array.from(embedding.data);
 
   return embeddingArray;
-}
-
-const getPath = (option) => {
-  if (option.value < 11) {
-    return "degree_attrs_codes"
-  } else {
-    return "credit_hours"
-  }
-}
-
-const getFilterObj = (filterOptions) => {
-
-}
-
-const formatArrayForSql = (arr) => {
-  return arr.map(value => `'${value.replace(/'/g, "''")}'`).join(', ');
 }
 
 const getSimilarCourses = async (query, filterOptions, filterOptionsCreditHours) => {
