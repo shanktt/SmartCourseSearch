@@ -59,15 +59,14 @@ const InputWithIcon = styled.div`
 `
 
 function SearchField(props) {
-    const {query, setQuery, filterOptions, filterOptionsCreditHours, setSearchResults} = useContext(GlobalContext)
-
-
-
+    const {query, setQuery, filterOptions, filterOptionsCreditHours, setSearchResults, setIsSearching} = useContext(GlobalContext)
 
     const setSearchQuery = (e) => {
         setQuery(e.target.value)
     }
+    
     const getCourse = () => {
+      setIsSearching(true)
       axios.post('/api/get_courses', {
           query,
           filterOptions,
@@ -75,10 +74,19 @@ function SearchField(props) {
       }).then((res) => {
           let data = res.data
           setSearchResults(data)
+          setIsSearching(false)
       }).catch(err => {
           console.log(err)
+          setIsSearching(false)
       })
     }
+
+      // Handler for the onKeyPress event
+      const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            getCourse();
+        }
+      }
 
     return (
         <Container>
@@ -91,7 +99,7 @@ function SearchField(props) {
                         height={30}
                         alt="Search Icon"
                     />
-                    <SearchInput type="text" onChange={setSearchQuery} value={query} placeholder={"Describe your dream course"}/>
+                    <SearchInput type="text" onChange={setSearchQuery} value={query} placeholder={"Describe your dream course"} onKeyDown={handleKeyPress}/>
 
                 </InputWithIcon>
                 <Button onClick={getCourse} size={"medium"} textStyle={{fontSize: 16, fontWeight: 600}} kind="elevated">Search</Button>

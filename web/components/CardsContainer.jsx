@@ -15,16 +15,44 @@ const Container = styled.div`
   margin-top: 30px;
   width: 100%;
   justify-content: center;
+  align-items: center;
 `
-function CardsContainer(props) {
-    const {searchResults} = useContext(GlobalContext);
-    return (
-        <Container>
-            {
-                searchResults.map((d, idx)=> <CourseCard cardInfo={d} key={idx}/>)
-            }
+const Spinner = styled.div`
+  border: 6px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid black;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin-top: 1em;
 
-        </Container>
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;
+
+const CenteredWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+
+function CardsContainer(props) {
+    const {searchResults, isSearching} = useContext(GlobalContext);
+    return (
+      <Container>
+        {
+            isSearching 
+            ? (
+                <CenteredWrapper>
+                    <Spinner />
+                </CenteredWrapper>
+              ) 
+            : searchResults.map((d, idx) => <CourseCard cardInfo={d} key={idx} />)
+        }
+      </Container>
     );
 }
 

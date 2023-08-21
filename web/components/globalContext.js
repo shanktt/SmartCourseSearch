@@ -10,6 +10,7 @@ function GlobalContextProvider({children}) {
     const [filterOptions, setFilterOptions] = useState([]);
     const [filterOptionsCreditHours, setFilterOptionsCreditHours] = useState(-1);
     const [searchResults, setSearchResults] = useState([]);
+    const [isSearching, setIsSearching] = useState(false);
 
     return (
         <GlobalContext.Provider value={{
@@ -20,7 +21,9 @@ function GlobalContextProvider({children}) {
             filterOptionsCreditHours, 
             setFilterOptionsCreditHours,
             searchResults,
-            setSearchResults
+            setSearchResults,
+            isSearching, 
+            setIsSearching
         }}>
             {children}
         </GlobalContext.Provider>
