@@ -14,6 +14,9 @@ const getSimilarCourses = async (query, filterOptions, filterOptionsCreditHours)
   const embedding = await getEmbeddings(query);
   const vectorQuery = `[${embedding.join(',')}]`
 
+  // Check if filterOptions is defined, if not set it to an empty array
+  filterOptions = filterOptions || [];
+
   // Extract attribute values
   const attributeValues = filterOptions.map(option => option.value);
 
